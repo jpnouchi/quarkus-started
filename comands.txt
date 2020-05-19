@@ -1,0 +1,14 @@
+#quarkus commands
+mvn io.quarkus:quarkus-maven-plugin:1.3.1.Final:create \
+    -DprojectGroupId=org.acme \
+    -DprojectArtifactId=data-started \
+    -DclassName="org.acme.getting.started.GreetingResource" \
+    -Dpath="/hello"
+
+./mvnw quarkus:list-extensions
+
+./mvnw quarkus:add-extension -Dextensions="quarkus-jdbc-mariadb,quarkus-resteasy-jsonb,quarkus-hibernate-orm"
+
+curl -d '{"id":"4","name":"jp"}' -H "Content-Type: application/json" -X POST http://localhost:8080/dev -v
+
+curl http://localhost:8080/dev/5 -v
